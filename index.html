@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Banana Roll Lezat - Varian Roti Tawar Hanya Rp13.000. Pesan sekarang!">
+    <title>Banana Roll Lezat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #f24e6e; }
+            50% { box-shadow: 0 0 20px #f24e6e; }
+            100% { box-shadow: 0 0 5px #f24e6e; }
+        }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out forwards; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out forwards; }
+        .glow { animation: glow 2s infinite ease-in-out; }
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(90deg, #f24e6e, #ff6f91);
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        header h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+            text-align: center;
+        }
+        .hero {
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe0cc 70%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 3em;
+            color: #f24e6e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .hero p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .products {
+            background: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .products h2 {
+            color: #f24e6e;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            background: linear-gradient(90deg, #ff6f91, #f24e6e);
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .product-card p {
+            font-size: 1.1em;
+            color: #f24e6e;
+            margin: 10px 0 5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .product-card .price {
+            font-size: 1.2em;
+            color: #f24e6e;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .price::before { content: 'Rp'; font-size: 0.9em; margin-right: 2px; }
+        .product-card .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #f24e6e;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .form-section {
+            background: linear-gradient(135deg, #ffe0cc, #fff7e6);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .form-section h2 {
+            color: #f24e6e;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+        }
+        .form-container textarea { resize: vertical; }
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        .form-container button:hover { background-color: #218838; }
+        .testimonials {
+            background: #fff7e6;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .testimonials h2 {
+            color: #f24e6e;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+        .testimonial-slider {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+            position: relative;
+        }
+        .testimonial-item {
+            min-width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        .testimonial-item strong {
+            display: block;
+            font-size: 1.1em;
+            color: #f24e6e;
+            margin-bottom: 10px;
+        }
+        .testimonial-item p {
+            font-size: 1em;
+            color: #444;
+            line-height: 1.5;
+        }
+        .slider-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .slider-btn {
+            background: #f24e6e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slider-btn:hover {
+            background: #ff6f91;
+        }
+        .slider-btn i {
+            font-size: 1.2em;
+        }
+        .contact-section {
+            background: linear-gradient(90deg, #ffe0cc, #fff7e6);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .contact-section h2 {
+            color: #f24e6e;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .contact-section p { margin: 10px 0; }
+        .contact-section a { color: #f24e6e; text-decoration: none; }
+        .contact-section a:hover { text-decoration: underline; }
+        .social-icon {
+            background: #fff7e6;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        .social-icon a {
+            margin: 0 15px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .social-icon a:hover { transform: scale(1.2); }
+        .social-icon i { color: #f24e6e; font-size: 30px; }
+        footer {
+            background: #f24e6e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        footer a { color: #fff7e6; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5em; }
+            .hero { padding: 50px 20px; }
+            .hero h2 { font-size: 2em; }
+            .hero p { font-size: 1em; }
+            .products { padding: 40px 20px; }
+            .products h2 { font-size: 2em; }
+            .product-card { max-width: 200px; }
+            .product-card img { height: 150px; }
+            .form-section { padding: 40px 20px; }
+            .form-section h2 { font-size: 2em; }
+            .form-container { padding: 20px; }
+            .testimonials { padding: 40px 20px; }
+            .testimonials h2 { font-size: 2em; }
+            .testimonial-item { min-width: 250px; }
+            .contact-section { padding: 40px 20px; }
+            .contact-section h2 { font-size: 2em; }
+            .social-icon i { font-size: 24px; margin: 0 10px; }
+            footer { padding: 15px; font-size: 0.85em; }
+            .slider-btn { width: 35px; height: 35px; }
+            .slider-btn i { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="fade-in-up">
+    <h1>Banana Roll Lezat</h1>
+</header>
+
+<section class="hero fade-in-up">
+    <h2>Banana Roll Lezat</h2>
+    <p>Nikmati varian roti tawar manis hanya Rp13.000! Isi formulir untuk pesan.</p>
+</section>
+
+<section class="products fade-in-up">
+    <h2>Produk Kami</h2>
+    <div class="product-grid">
+        <div class="product-card slide-in-left">
+            <img src="img/strawberry.jpg" alt="Banana Roll Strawberry">
+            <p>Banana Roll Strawberry</p>
+            <div class="price">13.000</div>
+        </div>
+        <div class="product-card glow">
+            <div class="badge">Paling Populer</div>
+            <img src="img/img1.jpg" alt="Banana Roll Mix">
+            <p>Banana Roll Mix</p>
+            <div class="price">13.000</div>
+        </div>
+        <div class="product-card slide-in-right">
+            <img src="img/coklat.jpg" alt="Banana Roll Coklat">
+            <p>Banana Roll Coklat</p>
+            <div class="price">13.000</div>
+        </div>
+    </div>
+</section>
+
+<section class="form-section fade-in-up" id="form">
+    <h2>Form Pemesanan</h2>
+    <div class="form-container">
+        <form onsubmit="return kirimPesan(event)">
+            <input type="text" id="nama" placeholder="Nama kamu" required>
+            <select id="varian" required>
+                <option value="" disabled selected>Pilih Varian</option>
+                <option value="Banana Roll Varian 1">Banana Roll Coklat</option>
+                <option value="Banana Roll Varian 2">Banana Roll Strawberry</option>
+                <option value="Banana Roll Varian 3">Banana Roll Mix</option>
+            </select>
+            <input type="number" id="jumlah" placeholder="Jumlah pesanan" required>
+            <textarea id="catatan" placeholder="Catatan tambahan..."></textarea>
+            <button type="submit">Kirim ke WhatsApp</button>
+        </form>
+    </div>
+</section>
+
+<section class="testimonials fade-in-up">
+    <h2>Pendapat Pelanggan</h2>
+    <div class="testimonial-slider" id="testimonialSlider">
+        <div class="testimonial-item">
+            <strong>Rangga</strong>
+            <p>Banana Roll-nya manis dan lembut, cocok untuk camilan!</p>
+        </div>
+        <div class="testimonial-item">
+            <strong>Cahyo</strong>
+            <p>Pelayanan ramah, pengiriman cepat, rasanya enak!</p>
+        </div>
+        <div class="testimonial-item">
+            <strong>Eca</strong>
+            <p>Varian Mix-nya juara! Selalu jadi pilihan favorit.</p>
+        </div>
+        <div class="testimonial-item">
+            <strong>Budi</strong>
+            <p>Harganya terjangkau, rasanya mewah. Rekomendasi!</p>
+        </div>
+        <div class="testimonial-item">
+            <strong>Lina</strong>
+            <p>Manisnya pas, cocok buat temen ngopi sore.</p>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button class="slider-btn" onclick="slideLeft()"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn" onclick="slideRight()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<section class="contact-section fade-in-up">
+    <h2>Kontak Kami</h2>
+    <p>📞 0851-7433-2076</p>
+    <p>📍 <a href="YOUR_Maps_URL" target="_blank">Lihat lokasi di Google Maps</a></p>
+</section>
+
+<div class="social-icon fade-in-up">
+    <a href="https://www.instagram.com/banana_roll29?igsh=MWdsMHgydzNjbGs5dA==" target="_blank" rel="noopener">
+        <i class="bi bi-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@banana_roll_?_t=ZS-8whoU5Jk2UR&_r=1" target="_blank">
+        <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://youtube.com/@bananaroll-x3h?si=b1GLK22vrvBFOd0U" target="_blank">
+        <i class="bi bi-youtube"></i>
+    </a>
+    <a href="https://www.facebook.com/share/15LeSy4DdB/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+</div>
+
+<footer class="fade-in-up">
+    <p>© 2025 Banana Roll Lezat. All rights reserved. | Kontak: <a href="https://wa.me/6285174332076">WhatsApp</a></p>
+</footer>
+
+<script>
+    function kirimPesan(event) {
+        event.preventDefault();
+        const nama = document.getElementById("nama").value;
+        const varian = document.getElementById("varian").value;
+        const jumlah = document.getElementById("jumlah").value;
+        const catatan = document.getElementById("catatan").value;
+
+        const pesan = encodeURIComponent(
+            `Halo! Saya ingin pesan Banana Roll.\nNama: ${nama}\nVarian: ${varian}\nJumlah: ${jumlah}\nCatatan: ${catatan}`
+        );
+        const link = `https://wa.me/6285174332076?text=${pesan}`;
+        window.open(link, "_blank");
+    }
+
+    let scrollPos = 0;
+    const slider = document.getElementById('testimonialSlider');
+    const itemWidth = 320; // Lebar item (300px) + gap (20px)
+    const totalItems = 5; // Total testimoni
+
+    function slideLeft() {
+        scrollPos += itemWidth;
+        if (scrollPos > 0) scrollPos = -(itemWidth * (totalItems - 1));
+        slider.style.transform = `translateX(${scrollPos}px)`;
+    }
+
+    function slideRight() {
+        scrollPos -= itemWidth;
+        if (scrollPos < -(itemWidth * (totalItems - 1))) scrollPos = 0;
+        slider.style.transform = `translateX(${scrollPos}px)`;
+    }
+
+    setInterval(() => {
+        scrollPos -= itemWidth;
+        if (scrollPos < -(itemWidth * (totalItems - 1))) scrollPos = 0;
+        slider.style.transform = `translateX(${scrollPos}px)`;
+    }, 5000);
+</script>
+
+</body>
+</html>
